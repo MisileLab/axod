@@ -1,7 +1,6 @@
 plugins {
     kotlin("jvm")
-    id("fabric-loom")
-    `maven-publish`
+    id("fabric-loom") version "1.0-SNAPSHOT"
     java
 }
 
@@ -9,18 +8,24 @@ group = property("maven_group")!!
 version = property("mod_version")!!
 
 repositories {
-    // Add repositories to retrieve artifacts from in here.
-    // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-    // See https://docs.gradle.org/current/userguide/declaring_repositories.html
+    mavenCentral()
+    maven { url = uri("https://maven.bai.lol") }
 }
 
 dependencies {
-    minecraft("com.mojang:minecraft:1.18.2")
-    mappings("net.fabricmc:yarn:1.18.2+build.2:v2")
-    modImplementation("net.fabricmc:fabric-loader:0.13.3")
+    minecraft("com.mojang:minecraft:1.19.2")
+    mappings(loom.officialMojangMappings())
+    modImplementation("net.fabricmc:fabric-loader:0.14.10")
 
-    modImplementation("net.fabricmc:fabric-language-kotlin:1.7.1+kotlin.1.6.10")
-    modImplementation("net.fabricmc.fabric-api:fabric-api:0.48.0+1.18.2")
+    modImplementation("net.fabricmc:fabric-language-kotlin:1.8.5+kotlin.1.7.20")
+    modImplementation("net.fabricmc.fabric-api:fabric-api:0.64.0+1.19.2")
+
+    // compile against the API
+    compileOnly("mcp.mobius.waila:wthit-api:mojmap-5.13.3")
+
+    // run against the full jar
+    runtimeOnly("mcp.mobius.waila:wthit:fabric-5.13.3")
+    runtimeOnly("lol.bai:badpackets:fabric-0.2.0")
 }
 
 tasks {
@@ -34,23 +39,6 @@ tasks {
 
     jar {
         from("LICENSE.md")
-    }
-
-    publishing {
-        publications {
-            create<MavenPublication>("mavenJava") {
-                artifact(remapJar) {
-                    builtBy(remapJar)
-                }
-                artifact(kotlinSourcesJar) {
-                    builtBy(remapSourcesJar)
-                }
-            }
-        }
-
-        // select the repositories you want to publish to
-        repositories {
-        }
     }
 
     compileKotlin {
