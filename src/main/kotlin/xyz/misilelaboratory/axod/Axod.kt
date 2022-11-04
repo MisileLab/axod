@@ -19,23 +19,22 @@ class Axod: ModInitializer, IWailaPlugin, IEntityComponentProvider {
     }
 
     override fun getOverride(accessor: IEntityAccessor, config: IPluginConfig): Entity? {
-        if (accessor.getEntity<Player>() is Player) {
-            return IEntityComponentProvider.EMPTY_ENTITY
-        }
         return null
     }
 
     override fun appendBody(tooltip: ITooltip, accessor: IEntityAccessor, config: IPluginConfig) {
-        val entity = accessor.getEntity<Player>()
+
+        val entity: Player? = accessor.player
 
         if (entity is Player) {
             val i = entity.inventory
+            print(i)
 
             tooltip.addLine()
 
             for (a in 9..12) {
                 val b = i.getItem(a)
-                tooltip.addLine(Component.literal("i$a${b.displayName}:${b.descriptionId}"))
+                tooltip.addLine(Component.literal("i$a - ${b.hoverName}:${b.item.description.contents}"))
             }
         }
     }

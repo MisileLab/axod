@@ -1,0 +1,6 @@
+{
+  "axod:plugin": {
+    "initializer": "xyz.misilelaboratory.axod.Axod",
+    "side": "*"
+  }
+}
