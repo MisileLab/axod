@@ -6,7 +6,7 @@ import net.minecraft.network.chat.Component
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.player.Player
 
-@SuppressWarnings("unused")
+@Suppress("unused")
 class Axod: ModInitializer, IWailaPlugin, IEntityComponentProvider {
 
     override fun onInitialize() {
@@ -30,16 +30,13 @@ class Axod: ModInitializer, IWailaPlugin, IEntityComponentProvider {
 
         if (entity is Player) {
             val i = entity.inventory
-            val a1 = i.getItem(9)
-            val a2 = i.getItem(10)
-            val a3 = i.getItem(11)
-            val a4 = i.getItem(12)
 
             tooltip.addLine()
-            tooltip.addLine(Component.literal("i9" + a1.displayName + ":" + a1.descriptionId))
-            tooltip.addLine(Component.literal("i10" + a2.displayName + ":" + a2.descriptionId))
-            tooltip.addLine(Component.literal("i11" + a3.displayName + ":" + a3.descriptionId))
-            tooltip.addLine(Component.literal("i12" + a4.displayName + ":" + a4.descriptionId))
+
+            for (a in 9..12) {
+                val b = i.getItem(a)
+                tooltip.addLine(Component.literal("i$a${b.displayName}:${b.descriptionId}"))
+            }
         }
     }
 }
