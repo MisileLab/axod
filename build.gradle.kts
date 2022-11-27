@@ -17,7 +17,7 @@ dependencies {
     mappings(loom.officialMojangMappings())
     modImplementation("net.fabricmc:fabric-loader:0.14.10")
 
-    modImplementation("net.fabricmc:fabric-language-kotlin:1.8.5+kotlin.1.7.20")
+    modImplementation("net.fabricmc:fabric-language-kotlin:1.8.6+kotlin.1.7.21")
     modImplementation("net.fabricmc.fabric-api:fabric-api:0.67.3+1.19.3")
 
     // compile against the API
