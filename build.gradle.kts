@@ -1,6 +1,6 @@
 plugins {
     kotlin("jvm")
-    id("fabric-loom") version "1.0.12"
+    id("fabric-loom") version "1.0.13"
     java
 }
 
