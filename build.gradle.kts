@@ -18,7 +18,7 @@ dependencies {
     modImplementation("net.fabricmc:fabric-loader:0.14.11")
 
     modImplementation("net.fabricmc:fabric-language-kotlin:1.8.7+kotlin.1.7.22")
-    modImplementation("net.fabricmc.fabric-api:fabric-api:0.68.1+1.19.3")
+    modImplementation("net.fabricmc.fabric-api:fabric-api:0.69.0+1.19.3")
 
     // compile against the API
     compileOnly("mcp.mobius.waila:wthit-api:mojmap-5.13.3")
